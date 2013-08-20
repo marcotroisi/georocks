@@ -3,15 +3,16 @@ GeoRocks
 
 A Javascript class that manages HTML5 Geolocation with fallback to IP-based geolocation
 
-* Usage *
+# Usage #
 
 Usage is extremely simple and well documented in the code. 
 
-** HTML **
+## HTML ##
 	<script type="text/javascript" src="jquery-2.0.3.min.js"></script>
     <script type="text/javascript" src="geolocator.min.js"></script>
 
-** Javascript ** 
+## Javascript ## 
+	
 	$(document).ready(function() {
 	  	
 	    /**
@@ -50,5 +51,5 @@ Usage is extremely simple and well documented in the code.
 	    GeoLocator.getCurPos(onSuccess, onError, true, { timeout: 15000, enableHighAccuracy: false });
 	});
 
-** Help ** 
+## Help ## 
 Should you need help, please do not hesitate to write me: hello AT [my github username] DOT com
