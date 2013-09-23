@@ -45,14 +45,14 @@ var GeoLoc = function() {
 		html5options 	= html5opt 	|| {};
 
 		navigator.geolocation.getCurrentPosition(this.geoSuccess, this.geoError, html5options);
-	}
+	};
 
 	/**
 	* Gets the position and calls the user's onSuccess function
 	*/
 	this.geoSuccess = function(position) {
 		onSuccess(position);
-	}
+	};
 
 	/**
 	* If fallback is enabled, it tries to get the address from IP-based geolocation
@@ -60,12 +60,49 @@ var GeoLoc = function() {
 	this.geoError = function(error) {
         if(fallbackToIp === true) {
 
-        	$.get("http://freegeoip.net/json/", function(responseGeoIp) {
+        	/* Using FreeGeoIP */
+        	// $.get("http://freegeoip.net/json/", function(responseGeoIp) {
+
+        	// 	var location = { 
+	        // 		coords: {
+	        // 			latitude: 	responseGeoIp.latitude,
+	        // 			longitude: 	responseGeoIp.longitude,
+	        // 			accuracy: 	0,
+	        // 			altitudeAccuracy: null,
+	        // 			heading: 	null,
+	        // 			speed: 		null
+	        // 		},
+	        // 		timestamp: null
+	        // 	};
+	        // 	_this.geoSuccess(location);
+	        	
+        	// }, "json");
+
+        	/* Using GeoIPLookup */
+        	// $.get("http://geoiplookup.net/geoapi.php?output=json", function(responseGeoIp) {
+
+        	// 	var location = { 
+	        // 		coords: {
+	        // 			latitude: 	responseGeoIp.latitude,
+	        // 			longitude: 	responseGeoIp.longitude,
+	        // 			accuracy: 	0,
+	        // 			altitudeAccuracy: null,
+	        // 			heading: 	null,
+	        // 			speed: 		null
+	        // 		},
+	        // 		timestamp: null
+	        // 	};
+	        // 	_this.geoSuccess(location);
+	        	
+        	// }, "json");
+
+        	/* Using IP-API.com */
+        	$.get("http://ip-api.com/json", function(responseGeoIp) {
 
         		var location = { 
 	        		coords: {
-	        			latitude: 	responseGeoIp.latitude,
-	        			longitude: 	responseGeoIp.longitude,
+	        			latitude: 	responseGeoIp.lat,
+	        			longitude: 	responseGeoIp.lon,
 	        			accuracy: 	0,
 	        			altitudeAccuracy: null,
 	        			heading: 	null,
@@ -86,7 +123,7 @@ var GeoLoc = function() {
         	}
 			
         }
-    }
-}
+    };
+};
 
 var GeoLocator = new GeoLoc(); 
